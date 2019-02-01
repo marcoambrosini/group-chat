@@ -8,9 +8,17 @@ import NewRoomForm from './components/NewRoomForm'
 
 import { tokenUrl, instanceLocator } from './config'
 
-class App extends React.Component {
 
-    componentDidMount() {
+class App extends React.Component {
+    
+    constructor() {
+        super()
+        this.state = {
+            messages : []
+        }
+    }
+
+    componentDidMount() { 
         const chatManager = new Chatkit.ChatManager({
             instanceLocator,
             userId: 'mrc',
@@ -25,7 +33,9 @@ class App extends React.Component {
                     roomId: "19400437",
                     hooks: {
                         onMessage: message => {
-                            console.log('message.text: ', message.text);
+                            this.setState({
+                               messages : [...this.state.messages, message]
+                            })
                         }
                     }
                 })
@@ -35,11 +45,13 @@ class App extends React.Component {
             })
     }
 
+
     render() {
+
         return (
             <div className="app">
                 <RoomList />
-                <MessageList />
+                <MessageList messages={this.state.messages} />
                 <SendMessageForm />
                 <NewRoomForm />
             </div>
@@ -48,3 +60,4 @@ class App extends React.Component {
 }
 
 export default App
+
