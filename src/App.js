@@ -14,8 +14,12 @@ class App extends React.Component {
     constructor() {
         super()
         this.state = {
-            messages : []
+            messages : [],
+            joinableRooms: [],
+            joinedRooms: []
         }
+
+        this.sendMessage = this.sendMessage.bind(this)
     }
 
     componentDidMount() { 
@@ -29,6 +33,17 @@ class App extends React.Component {
 
         chatManager.connect()
             .then(currentUser => {
+                this.currentUser = currentUser// this statement takes the currentUser thet comes from the connect method and passes it up to the component context, so that later we can use currentuser methods (currentuser.whatever()) in the app component. For example this.currentUser.sendMessage()
+
+                this.currentUser.getJoinableRooms()
+                 .then(joinableRooms => {
+                    this.setState({
+                        joinableRooms :joinableRooms,
+                        joinedRooms: this.currentUser.rooms
+                    })
+                 })
+                 .catch(err => console.log('error on joinable roomes: ',err))
+
                 currentUser.subscribeToRoom({
                     roomId: "19400437",
                     hooks: {
@@ -45,14 +60,21 @@ class App extends React.Component {
             })
     }
 
+    sendMessage(text) {
+        this.currentUser.sendMessage({
+            text : text,
+            roomId : '19400437'
+        }) 
+    } 
+
 
     render() {
 
         return (
             <div className="app">
-                <RoomList />
+                <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}/>
                 <MessageList messages={this.state.messages} />
-                <SendMessageForm />
+                <SendMessageForm sendMessage={this.sendMessage}/>
                 <NewRoomForm />
             </div>
         );

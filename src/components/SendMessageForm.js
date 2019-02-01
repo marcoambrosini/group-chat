@@ -12,7 +12,8 @@ class SendMessageForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault() 
-        alert(this.state.message)
+        this.props.sendMessage(this.state.message)
+        this.setState({message : ''})
     }
 
     handleChange(event) {
@@ -24,7 +25,6 @@ class SendMessageForm extends React.Component {
     }
 
     render() {
-        console.log(this.state.message)
         return (
             <form 
                 className="send-message-form"
