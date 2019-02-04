@@ -1,5 +1,5 @@
 :root {
-    --main-color: #5ea3d0;
+    --main-color: #001aff;
     --secondary-color: white;
     --main-text-color: #3e5869;
     --secondary-text-color: #b0c7d6;
@@ -23,7 +23,7 @@ html, body {
     display: grid;
     height: 100%;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 60px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 75px;
     grid-template-areas: 
         "r m m m m m"
         "r m m m m m"
@@ -58,7 +58,7 @@ html, body {
     height: 100%;
 }
 
-.rooms-list > ul {
+.rooms-list  ul {
     list-style-type: none;    
     padding: 0;
     overflow: scoll;
@@ -68,7 +68,7 @@ html, body {
     margin: 10px 0;
 }
 
-.rooms-list > h3 {
+.rooms-list h3 {
     margin: 5px 0;
     color: var(--secondary-color);
 }
@@ -85,13 +85,14 @@ html, body {
 }
 
 .new-room-form {
+    height : 100%;
+    display:flex;
     padding: 0 5px;
     background: var(--secondary-color);
     color: var(--main-text-color);
 }
 
 .new-room-form form {
-    /* height: 100%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -164,6 +165,7 @@ html, body {
 .send-message-form {
     background: var(--send-message-form);
     display: flex;
+    height:100%
 }
 
 .send-message-form input {
