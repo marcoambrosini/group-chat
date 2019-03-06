@@ -62,7 +62,7 @@ class App extends React.Component {
       .subscribeToRoom({
         roomId: roomId,
         hooks: {
-          onMessage: message => {
+          onNewMessage: message => {
             this.setState({
               messages: [...this.state.messages, message]
             })
