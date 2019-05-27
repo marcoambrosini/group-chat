@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 class RoomList extends React.Component {
   render() {
@@ -6,11 +6,11 @@ class RoomList extends React.Component {
     return (
       <div className="rooms-list">
         <ul>
-          <h3>Your rooms:</h3>
+          <h3>TEXT CHANNELS</h3>
           {orderedRooms.map(room => {
-            const active = this.props.roomId === room.id ? "active" : ""
+            const active = this.props.roomId === room.id ? 'active' : ''
             return (
-              <li key={room.id} className={"room " + active}>
+              <li key={room.id} className={'room ' + active}>
                 <a onClick={() => this.props.subscribeToRoom(room.id)} href="#">
                   # {room.name}
                 </a>
