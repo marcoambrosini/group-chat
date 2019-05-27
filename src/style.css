@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
   --main-color: white;
   --secondary-color: white;
@@ -53,14 +55,13 @@ body {
   grid-area: f;
 }
 
-/* REST OF CSS */
 .rooms-list {
   box-sizing: border-box;
   padding: 30px;
   background-color: var(--main-color);
   overflow: auto;
   height: 100%;
-  box-shadow: 1px 0px 5px 2px lightgray;
+  box-shadow: 1px 0px 3px 2px lightgray;
   z-index: 10;
 }
 
@@ -86,6 +87,7 @@ body {
   font-weight: 400;
   text-decoration: none;
 }
+
 .rooms-list .room a:hover {
   color: var(--text-hover);
 }
@@ -100,7 +102,8 @@ body {
   padding: 0 5px;
   background: var(--secondary-color);
   color: var(--main-text-color);
-  box-shadow-top: 0px 1px 5px 2px lightgray;
+  box-shadow: 1px 0px 3px 2px lightgray;
+
   z-index: 10;
 }
 
@@ -150,6 +153,7 @@ body {
   opacity: 0.9;
   margin-bottom: 6px;
 }
+
 .message .message-text {
   color: var(--secondary-text-color);
   display: inline;
@@ -179,8 +183,8 @@ body {
   background: var(--send-message-form);
   display: flex;
   height: 100%;
-  box-shadow: 1px 0px 5px 2px lightgray;
-  z-index: 11;
+  box-shadow: 6px 0px 3px 2px lightgray;
+  z-index: 1;
 }
 
 .send-message-form input {

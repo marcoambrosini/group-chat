@@ -1,4 +1,9 @@
-/* eslint-disable no-unused-expressions */
+/**
+ * /* eslint-disable no-unused-expressions
+ *
+ * @format
+ */
+
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-labels */
 /* eslint-disable no-labels */
@@ -10,7 +15,7 @@ import SendMessageForm from './components/SendMessageForm'
 import RoomList from './components/RoomList'
 import NewRoomForm from './components/NewRoomForm'
 
-import { tokenUrl, instanceLocator } from './config'
+import {tokenUrl, instanceLocator} from './config'
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +25,7 @@ class App extends React.Component {
       roomId: null,
       messages: [],
       joinableRooms: [],
-      joinedRooms: []
+      joinedRooms: [],
     }
 
     this.sendMessage = this.sendMessage.bind(this)
@@ -34,8 +39,8 @@ class App extends React.Component {
       instanceLocator,
       userId: 'mrc',
       tokenProvider: new Chatkit.TokenProvider({
-        url: tokenUrl
-      })
+        url: tokenUrl,
+      }),
     })
 
     chatManager
@@ -55,28 +60,30 @@ class App extends React.Component {
       .then(joinableRooms => {
         this.setState({
           joinableRooms,
-          joinedRooms: this.currentUser.rooms
+          joinedRooms: this.currentUser.rooms,
         })
       })
       .catch(err => console.log('error on joinable roomes: ', err))
   }
 
   subscribeToRoom(roomId) {
-    this.setState({ messages: [] })
+    this.setState({
+      messages: [],
+    })
     this.currentUser
       .subscribeToRoom({
         roomId,
         hooks: {
           onMessage: message => {
             this.setState({
-              messages: [...this.state.messages, message]
+              messages: [...this.state.messages, message],
             })
-          }
-        }
+          },
+        },
       })
       .then(room => {
         this.setState({
-          roomId: room.id
+          roomId: room.id,
         })
         this.getRooms()
       })
@@ -86,14 +93,14 @@ class App extends React.Component {
   sendMessage(text) {
     this.currentUser.sendMessage({
       text,
-      roomId: this.state.roomId
+      roomId: this.state.roomId,
     })
   }
 
   createRoom(name) {
     this.currentUser
       .createRoom({
-        name
+        name,
       })
       .then(room => this.subscribeToRoom(room.id))
       .catch(err => console.log('error while creating room ', err))
@@ -106,16 +113,10 @@ class App extends React.Component {
           roomId={this.state.roomId}
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
-        />
-        <MessageList
-          messages={this.state.messages}
-          roomId={this.state.roomId}
-        />
-        <SendMessageForm
-          sendMessage={this.sendMessage}
-          disabled={!this.state.roomId}
-        />
-        <NewRoomForm createRoom={this.createRoom} />
+        />{' '}
+        <MessageList messages={this.state.messages} roomId={this.state.roomId} />{' '}
+        <SendMessageForm sendMessage={this.sendMessage} disabled={!this.state.roomId} />{' '}
+        <NewRoomForm createRoom={this.createRoom} />{' '}
       </div>
     )
   }
