@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 
-import StyledSidebar from './styled/StyledSidebar'
-
 class NewRoomForm extends React.Component {
   constructor() {
     super()
@@ -34,7 +32,7 @@ class NewRoomForm extends React.Component {
   render() {
     return (
       <div className="new-room-form">
-        <StyledSidebar>
+        <StyledformContainer>
           <StyledNewRoomFormForm onSubmit={this.handleSubmit}>
             <StyledNewRoomFormInput
               value={this.state.roomName}
@@ -47,13 +45,22 @@ class NewRoomForm extends React.Component {
               <FontAwesomeIcon icon={faPlusSquare} size="md" />
             </StyledNewRoomFormButton>
           </StyledNewRoomFormForm>
-        </StyledSidebar>
+        </StyledformContainer>
       </div>
     )
   }
 }
 
 export default NewRoomForm
+
+const StyledformContainer = styled.div`
+  box-sizing: border-box;
+  padding: 30px;
+  background-color: var(--main-color);
+  overflow: auto;
+  height: 100%;
+  z-index: 11;
+`
 
 const StyledNewRoomFormForm = styled.form`
   display: flex;

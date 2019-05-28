@@ -1,9 +1,9 @@
 /** @format */
 
 :root {
-  --main-color: black;
+  --main-color: #2e2d38;
   --secondary-color: white;
-  --main-text-color: #131935;
+  --main-text-color: #2e2e2e;
   --secondary-text-color: #131935;
   --sidebar-text-color: lightgrey;
   --sidebar-secondary-text-color: lightgrey;
