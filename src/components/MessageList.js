@@ -27,8 +27,9 @@ export default function MessageList(props) {
         <ScrollToBottom className={AUTOSCROLL_ROOT_CSS}>
           <div className="message-list">
             <StyledMessageList>
-              {props.messages.map((message, index) => {
-                return <Message key={index} username={message.senderId} text={message.text} />
+              {props.messages.map(message => {
+                console.log(message)
+                return <Message key={message.id} username={message.senderId} text={message.parts[0].payload.content} />
               })}
             </StyledMessageList>
           </div>

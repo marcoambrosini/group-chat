@@ -5,12 +5,10 @@ import styled from 'styled-components'
 
 export default function Message(props) {
   return (
-    <>
-      <StyledMessage>
-        <StyledMessageUserName>{props.username}</StyledMessageUserName>
-        <StyledMessageText>{props.text}</StyledMessageText>
-      </StyledMessage>
-    </>
+    <StyledMessage>
+      <StyledMessageUserName>{props.username}</StyledMessageUserName>
+      <StyledMessageText>{props.text}</StyledMessageText>
+    </StyledMessage>
   )
 }
 

@@ -3,29 +3,32 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default class RoomList extends React.Component {
-  render() {
-    const orderedRooms = [...this.props.rooms].sort((a, b) => a.id - b.id)
-    return (
-      <div className="rooms-list">
-        <RoomListContainer>
-          <StyledRoomsListUl>
-            <StyledRoomsListH3>TEXT CHANNELS</StyledRoomsListH3>
-            {orderedRooms.map(room => {
-              const active = this.props.roomId === room.id ? 'active' : ''
-              return (
-                <StyledRoomsListLi key={room.id} className={'room ' + active}>
-                  <StyledRoomslistRoomA onClick={() => this.props.subscribeToRoom(room.id)} href="#">
-                    # {room.name}
-                  </StyledRoomslistRoomA>
-                </StyledRoomsListLi>
-              )
-            })}
-          </StyledRoomsListUl>
-        </RoomListContainer>
-      </div>
-    )
-  }
+export default function RoomList(props) {
+  const orderedRooms = [...props.rooms].sort((a, b) => a.id - b.id)
+  return (
+    <div className="rooms-list">
+      <RoomListContainer>
+        <StyledRoomsListUl>
+          <StyledRoomsListH3>TEXT CHANNELS</StyledRoomsListH3>
+          {orderedRooms.map(room => {
+            const active = props.roomId === room.id ? 'active' : ''
+            return (
+              <StyledRoomsListLi key={room.id} className={'room ' + active}>
+                <StyledRoomslistRoomA
+                  onClick={() => {
+                    console.log(room.id)
+                    props.subscribeToRoom(room.id)
+                  }}
+                  href="#">
+                  # {room.name}
+                </StyledRoomslistRoomA>
+              </StyledRoomsListLi>
+            )
+          })}
+        </StyledRoomsListUl>
+      </RoomListContainer>
+    </div>
+  )
 }
 
 const RoomListContainer = styled.div`

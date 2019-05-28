@@ -1,50 +1,39 @@
 /** @format */
 
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 
-class SendMessageForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      message: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+export default function SendMessageForm(props) {
+  const [message, setMessage] = useState('')
 
-  handleSubmit(event) {
+  const handleSubmit = event => {
     event.preventDefault()
-    this.props.sendMessage(this.state.message)
-    this.setState({message: ''})
+    props.sendMessage(message)
+    setMessage('')
   }
 
-  handleChange(event) {
-    this.setState({
-      message: event.target.value,
-    })
+  const handleChange = event => {
+    setMessage(event.target.value)
   }
 
-  render() {
-    return (
-      <div className="send-message-form">
-        <StyledSendMessageFormContainer>
-          <form onSubmit={this.handleSubmit}>
-            <StyledSendMessageFormInput
-              disabled={this.props.disabled}
-              onChange={this.handleChange}
-              value={this.state.message}
-              placeholder="Type your message and hit ENTER"
-              type="text"
-            />
-          </form>
-        </StyledSendMessageFormContainer>
-      </div>
-    )
-  }
+  return (
+    <div className="send-message-form">
+      <StyledSendMessageFormContainer>
+        <form onSubmit={handleSubmit}>
+          <StyledSendMessageFormInput
+            disabled={props.disabled}
+            onChange={handleChange}
+            value={message}
+            placeholder="Type your message and hit ENTER"
+            type="text"
+          />
+        </form>
+      </StyledSendMessageFormContainer>
+    </div>
+  )
 }
 
-export default SendMessageForm
+//styled-components
 
 const StyledSendMessageFormContainer = styled.div`
   width: calc(100% - 80px);
