@@ -1,57 +1,43 @@
 /** @format */
 
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 
-class NewRoomForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      roomName: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+export default function NewRoomForm(props) {
+  const [roomName, setRoomName] = useState('')
+
+  const handleChange = e => {
+    setRoomName(e.target.value)
   }
 
-  handleChange(e) {
-    this.setState({
-      roomName: e.target.value,
-    })
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault()
-    this.props.createRoom(this.state.roomName)
-    this.setState({
-      roomName: '',
-    })
+    props.createRoom(roomName)
   }
 
-  render() {
-    return (
-      <div className="new-room-form">
-        <StyledformContainer>
-          <StyledNewRoomFormForm onSubmit={this.handleSubmit}>
-            <StyledNewRoomFormInput
-              value={this.state.roomName}
-              type="text"
-              onChange={this.handleChange}
-              placeholder="New room's name"
-              required
-            />
-            <StyledNewRoomFormButton id="create-room-btn" type="submit">
-              <FontAwesomeIcon icon={faPlusSquare} size="md" />
-            </StyledNewRoomFormButton>
-          </StyledNewRoomFormForm>
-        </StyledformContainer>
-      </div>
-    )
-  }
+  return (
+    <div className="new-room-form">
+      <StyledformContainer>
+        <StyledNewRoomFormForm onSubmit={handleSubmit}>
+          <StyledNewRoomFormInput
+            value={roomName}
+            type="text"
+            onChange={handleChange}
+            placeholder="New room's name"
+            required
+          />
+          <StyledNewRoomFormButton id="create-room-btn" type="submit">
+            <FontAwesomeIcon icon={faPlusSquare} size="md" />
+          </StyledNewRoomFormButton>
+        </StyledNewRoomFormForm>
+      </StyledformContainer>
+    </div>
+  )
 }
 
-export default NewRoomForm
+//styled-components
 
 const StyledformContainer = styled.div`
   box-sizing: border-box;

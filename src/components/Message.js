@@ -3,7 +3,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Message(props) {
+export default function Message(props) {
   return (
     <>
       <StyledMessage>
@@ -14,7 +14,7 @@ function Message(props) {
   )
 }
 
-export default Message
+//styled-components
 
 const StyledMessage = styled.div`
   margin: 15px;

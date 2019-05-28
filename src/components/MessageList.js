@@ -1,46 +1,41 @@
 /** @format */
 
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, {useEffect} from 'react'
+import {css} from 'glamor'
+import ScrollToBottom from 'react-scroll-to-bottom'
 import Message from './Message'
 import styled from 'styled-components'
 
-class MessageList extends React.Component {
-  componentWillUpdate() {
-    const node = ReactDOM.findDOMNode(this)
-    this.shouldScrollToBottom = node.scrollTop + node.clientHeight + 100 >= node.scrollHeight
-  }
+export default function MessageList(props) {
+  const AUTOSCROLL_ROOT_CSS = css({
+    height: 'calc(100% - 80px)',
+    width: 'calc(100% - 280px)',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  })
 
-  componentDidUpdate() {
-    if (this.shouldScrolltoBottom) {
-      const node = ReactDOM.findDOMNode(this)
-      node.scrollTop = node.scrollHeight
-    }
-  }
-
-  render() {
-    if (!this.props.roomId) {
-      return (
-        <div className="message-list">
-          <StyledJoinRoom className="join-room">&larr; Join a room!</StyledJoinRoom>
-        </div>
-      )
-    } else
-      return (
-        <>
+  if (!props.roomId) {
+    return (
+      <div className="message-list">
+        <StyledJoinRoom className="join-room">&larr; Join a room!</StyledJoinRoom>
+      </div>
+    )
+  } else
+    return (
+      <>
+        <ScrollToBottom className={AUTOSCROLL_ROOT_CSS}>
           <div className="message-list">
             <StyledMessageList>
-              {this.props.messages.map((message, index) => {
+              {props.messages.map((message, index) => {
                 return <Message key={index} username={message.senderId} text={message.text} />
               })}
             </StyledMessageList>
           </div>
-        </>
-      )
-  }
+        </ScrollToBottom>
+      </>
+    )
 }
-
-export default MessageList
 
 const StyledMessageList = styled.div`
   box-sizing: border-box;
@@ -48,7 +43,8 @@ const StyledMessageList = styled.div`
   padding-bottom: 20px;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  position: relative;
   background: var(--secondary-color);
 `
 
