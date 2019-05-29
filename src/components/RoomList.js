@@ -11,12 +11,11 @@ export default function RoomList(props) {
         <StyledRoomsListUl>
           <StyledRoomsListH3>TEXT CHANNELS</StyledRoomsListH3>
           {orderedRooms.map(room => {
-            const active = props.roomId === room.id ? 'active' : ''
+            console.log(room.id)
             return (
-              <StyledRoomsListLi key={room.id} className={'room ' + active}>
+              <StyledRoomsListLi key={room.id}>
                 <StyledRoomslistRoomA
                   onClick={() => {
-                    console.log(room.id)
                     props.subscribeToRoom(room.id)
                   }}
                   href="#">

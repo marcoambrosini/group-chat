@@ -3,12 +3,10 @@
 import React, {useState, useEffect} from 'react'
 import Chatkit from '@pusher/chatkit-client'
 
-import MessageList from './components/MessageList'
-import SendMessageForm from './components/SendMessageForm'
-import RoomList from './components/RoomList'
-import NewRoomForm from './components/NewRoomForm'
+import Chat from './views/Chat.js'
 
 import {tokenUrl, instanceLocator} from './config'
+import SignUp from './views/SignUp.js'
 
 export default function App() {
   const [roomId, setroomId] = useState(null)
@@ -16,6 +14,7 @@ export default function App() {
   const [joinableRooms, setJoinableRooms] = useState([])
   const [joinedRooms, setjoinedRooms] = useState([])
   const [currentUser, setCurrentUser] = useState({})
+  const [userId, setUserId] = useState('')
 
   useEffect(() => {
     const chatManager = new Chatkit.ChatManager({
@@ -29,7 +28,6 @@ export default function App() {
       .connect()
       .then(currentUser => {
         setCurrentUser(currentUser) // this statement takes the currentUser that comes from the connect method and passes it up to the component context, so that later we can use currentuser methods (currentuser.whatever()) in the app component. For example this.currentUser.sendMessage()
-        console.log(currentUser)
         currentUser
           .getJoinableRooms()
           .then(joinableRooms => {
@@ -88,11 +86,16 @@ export default function App() {
       .catch(err => console.log('error while creating room ', err))
   }
 
-  return (
-    <div className="app">
-      <RoomList roomId={roomId} subscribeToRoom={subscribeToRoom} rooms={[...joinableRooms, ...joinedRooms]} />{' '}
-      <MessageList messages={messages} roomId={roomId} />{' '}
-      <SendMessageForm sendMessage={sendMessage} disabled={!roomId} /> <NewRoomForm createRoom={createRoom} />{' '}
-    </div>
-  )
+  if (userId !== '') {
+    return (
+      <Chat
+        roomId={roomId}
+        subscribeToRoom={subscribeToRoom}
+        rooms={[...joinableRooms, ...joinedRooms]}
+        messages={messages}
+        sendMessage={sendMessage}
+        createRoom={createRoom}
+      />
+    )
+  } else return <SignUp />
 }

@@ -1,12 +1,12 @@
 /** @format */
 
-import React, {useEffect} from 'react'
+import React from 'react'
 import {css} from 'glamor'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import Message from './Message'
 import styled from 'styled-components'
 
-export default function MessageList(props) {
+export default function MessageList({roomId, messages}) {
   const AUTOSCROLL_ROOT_CSS = css({
     height: 'calc(100% - 80px)',
     width: 'calc(100% - 280px)',
@@ -15,7 +15,7 @@ export default function MessageList(props) {
     top: 0,
   })
 
-  if (!props.roomId) {
+  if (!roomId) {
     return (
       <div className="message-list">
         <StyledJoinRoom className="join-room">&larr; Join a room!</StyledJoinRoom>
@@ -27,8 +27,7 @@ export default function MessageList(props) {
         <ScrollToBottom className={AUTOSCROLL_ROOT_CSS}>
           <div className="message-list">
             <StyledMessageList>
-              {props.messages.map(message => {
-                console.log(message)
+              {messages.map(message => {
                 return <Message key={message.id} username={message.senderId} text={message.parts[0].payload.content} />
               })}
             </StyledMessageList>

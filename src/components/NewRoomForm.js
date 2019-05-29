@@ -29,7 +29,7 @@ export default function NewRoomForm(props) {
             required
           />
           <StyledNewRoomFormButton id="create-room-btn" type="submit">
-            <FontAwesomeIcon icon={faPlusSquare} size="1x" />
+            <FontAwesomeIcon icon={faPlusSquare} size="lg" />
           </StyledNewRoomFormButton>
         </StyledNewRoomFormForm>
       </StyledformContainer>
@@ -67,7 +67,6 @@ const StyledNewRoomFormInput = styled.input`
     outline-width: 0;
   }
 `
-/** */
 const StyledNewRoomFormButton = styled.button`
   background: var(--main-color);
   color: var(--sidebar-text-color);
