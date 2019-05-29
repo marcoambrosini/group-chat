@@ -11,7 +11,6 @@ export default function RoomList(props) {
         <StyledRoomsListUl>
           <StyledRoomsListH3>TEXT CHANNELS</StyledRoomsListH3>
           {orderedRooms.map(room => {
-            console.log(room.id)
             return (
               <StyledRoomsListLi key={room.id}>
                 <StyledRoomslistRoomA
