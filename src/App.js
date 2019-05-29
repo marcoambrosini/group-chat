@@ -5,7 +5,7 @@ import Chatkit from '@pusher/chatkit-client'
 
 import Chat from './views/Chat.js'
 
-import {tokenUrl, instanceLocator} from './config'
+import {tokenUrl, instanceLocator, secretKey} from './config'
 import SignUp from './views/SignUp.js'
 
 export default function App() {
@@ -86,6 +86,13 @@ export default function App() {
       .catch(err => console.log('error while creating room ', err))
   }
 
+  const createUser = userName => {
+    chatManager.createUser({
+      id: userName,
+      name: userName,
+    })
+  }
+
   if (userId !== '') {
     return (
       <Chat
@@ -97,5 +104,5 @@ export default function App() {
         createRoom={createRoom}
       />
     )
-  } else return <SignUp />
+  } else return <SignUp setUserId={setUserId} />
 }

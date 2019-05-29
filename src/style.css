@@ -26,7 +26,11 @@ body {
 #root {
   height: 100%;
 }
-
+.signup {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
 .chat {
   display: grid;
   height: 100vh;
