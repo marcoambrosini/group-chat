@@ -2,22 +2,31 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import Avatar from 'react-avatar'
 
 export default function Message(props) {
   return (
-    <StyledMessage>
-      <StyledMessageUserName>{props.username}</StyledMessageUserName>
-      <StyledMessageText>{props.text}</StyledMessageText>
-    </StyledMessage>
+    <StyledMessageWrapper>
+      <Avatar name={props.username} size="40" round={true} />
+      <StyledMessageData>
+        <StyledMessageUserName>{props.username}</StyledMessageUserName>
+        <StyledMessageText>{props.text}</StyledMessageText>
+      </StyledMessageData>
+    </StyledMessageWrapper>
   )
 }
 
 //styled-components
 
-const StyledMessage = styled.div`
-  margin: 15px;
+const StyledMessageWrapper = styled.div`
+  margin: 0px;
   border-bottom: 1px solid lightgray;
-  padding: 10px;
+  padding: 20px;
+  display: flex;
+`
+
+const StyledMessageData = styled.div`
+  margin-left: 18px;
 `
 
 const StyledMessageUserName = styled.div`
