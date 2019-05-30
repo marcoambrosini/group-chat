@@ -33,13 +33,14 @@ export default function Chat(props) {
           .then(joinableRooms => {
             setJoinableRooms(joinableRooms)
             setjoinedRooms(currentUser.rooms)
+            props.setIsLoading(false)
           })
           .catch(err => console.log('error on joinable roomes: ', err))
       })
       .catch(err => {
         console.log('Error on connection', err)
       })
-  }, [])
+  }, [props])
 
   const getRooms = () => {
     currentUser
