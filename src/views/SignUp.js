@@ -18,15 +18,10 @@ export default function SignUp(props) {
   return (
     <div className="signup">
       <StyledFormWrapper>
+        <StyledH2>I just need your name</StyledH2>
         <form onSubmit={handleSubmit}>
-          <StyledFormInput
-            disabled={props.disabled}
-            onChange={handleChange}
-            value={input}
-            placeholder="Type your message and hit ENTER"
-            type="text"
-          />
-          <StyledFormButton> Log In</StyledFormButton>
+          <StyledFormInput autoFocus onChange={handleChange} value={input} type="text" />
+          <StyledFormButton>Go!</StyledFormButton>
         </form>
       </StyledFormWrapper>
     </div>
@@ -34,6 +29,8 @@ export default function SignUp(props) {
 }
 
 const StyledFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 300px;
   height: 450px;
   margin: auto;
@@ -43,6 +40,35 @@ const StyledFormWrapper = styled.div`
   background-color: var(--secondary-color);
 `
 
-const StyledFormInput = styled.input``
+const StyledH2 = styled.h2`
+  font-size: 18;
+`
 
-const StyledFormButton = styled.button``
+const StyledFormInput = styled.input`
+  width: calc(100% - 60px);
+  padding: 15px 20px 15px 20px;
+  border-radius: 20px;
+  border-style: none;
+  background: var(--send-message-form);
+  font-weight: 300;
+  &:focus {
+    outline-width: 0;
+  }
+  &:placeholder {
+    color: var(--main-text-color);
+  }
+`
+const StyledFormButton = styled.button`
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  margin-top: 280px;
+  &:focus {
+    border: none;
+  }
+  &:hover {
+    background-color: var(--text-hover);
+  }
+`

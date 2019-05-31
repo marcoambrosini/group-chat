@@ -1,6 +1,6 @@
 {
-  "short_name": "simplechat",
-  "name": "simplechat",
+  "short_name": "group-chat",
+  "name": "group-chat",
   "icons": [
     {
       "src": "favicon.ico",

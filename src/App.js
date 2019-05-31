@@ -34,6 +34,7 @@ export default function App() {
           logInExistingUser(userName)
         } else {
           console.log('error whuile creating the user:' + err.status)
+          setIsLoading(false)
         }
       })
   }

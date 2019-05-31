@@ -39,6 +39,7 @@ export default function Chat(props) {
       })
       .catch(err => {
         console.log('Error on connection', err)
+        props.setIsLoading(false)
       })
   }, [props])
 
