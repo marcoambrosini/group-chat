@@ -15,6 +15,7 @@ export default function Chat(props) {
   const [joinableRooms, setJoinableRooms] = useState([])
   const [joinedRooms, setjoinedRooms] = useState([])
   const [currentUser, setCurrentUser] = useState({})
+  const [isLoadingMessages, setIsLoadingMessages] = useState(false)
 
   useEffect(() => {
     const chatManager = new Chatkit.ChatManager({
@@ -54,6 +55,7 @@ export default function Chat(props) {
   }
 
   const subscribeToRoom = roomId => {
+    setIsLoadingMessages(true)
     setMessages([])
     currentUser
       .subscribeToRoomMultipart({
@@ -68,6 +70,7 @@ export default function Chat(props) {
       .then(room => {
         setroomId(room.id)
         getRooms()
+        setIsLoadingMessages(false)
       })
       .catch(err => console.log('error on subscribing to room: ', err))
   }
@@ -90,7 +93,7 @@ export default function Chat(props) {
   return (
     <div className="chat">
       <RoomList roomId={roomId} subscribeToRoom={subscribeToRoom} rooms={[...joinableRooms, ...joinedRooms]} />{' '}
-      <MessageList messages={messages} roomId={roomId} />{' '}
+      <MessageList messages={messages} roomId={roomId} isLoadingMessages={isLoadingMessages} />{' '}
       <SendMessageForm sendMessage={sendMessage} disabled={!roomId} /> <NewRoomForm createRoom={createRoom} />{' '}
     </div>
   )
