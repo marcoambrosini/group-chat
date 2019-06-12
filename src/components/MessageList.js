@@ -17,10 +17,18 @@ export default function MessageList(props) {
     top: 0,
   })
 
-  if (!props.roomId) {
+  if (props.roomId === null || props.isLoadingMessages) {
+    if (props.isLoadingMessages) {
+      return (
+        <div className="message-list">
+          <StyledLoaderWrapper>
+            <GridLoader css={override} sizeUnit={'px'} size={15} color={'#123abc'} loading={props.isLoadingMessages} />
+          </StyledLoaderWrapper>
+        </div>
+      )
+    }
     return (
       <div className="message-list">
-        <GridLoader css={override} sizeUnit={'px'} size={15} color={'#123abc'} loading={props.isLoadingMessage} />
         <StyledJoinRoom className="join-room">&larr; Join a room!</StyledJoinRoom>
       </div>
     )
@@ -52,7 +60,7 @@ const StyledMessageList = styled.div`
 `
 
 const StyledJoinRoom = styled.div`
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -61,14 +69,21 @@ const StyledJoinRoom = styled.div`
   color: var(--main-text-color);
 `
 
+const StyledLoaderWrapper = styled.div`
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+`
+
 //css in js for the spunner plugin
 const override = cssEmotion`
-  display: block;
-  margin-left: calc(50vw - 15px);
-  margin-top: calc(50vh - 15px);
-  height: 100vh;
-  width: 100vw;
-  background-color: white;
+  background-color: transparent;
   z-index: 15;
   -webkit-transition: opacity 1s ease-in;
   -moz-transition: opacity 1s ease-in;
