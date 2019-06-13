@@ -60,6 +60,7 @@ body {
 
 .rooms-list {
   grid-area: r;
+  display: flex;
 }
 
 .message-list {
