@@ -3,7 +3,7 @@
 import React from 'react'
 import {css} from 'glamor'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import Message from './Message'
+import Message from '../message/Message'
 import styled from 'styled-components'
 import {GridLoader} from 'react-spinners'
 import {css as cssEmotion} from '@emotion/core'

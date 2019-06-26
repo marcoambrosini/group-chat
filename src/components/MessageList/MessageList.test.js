@@ -2,11 +2,11 @@
 
 import React from 'react'
 import {create} from 'react-test-renderer'
-import Message from '../components/Message'
+import MessageList from './MessageList'
 
-describe('Feature component', () => {
+describe('MessageList component', () => {
   test('it matches the snapshot', () => {
-    const component = create(<Message />)
+    const component = create(<MessageList />)
     expect(component.toJSON()).toMatchSnapshot()
   })
 })

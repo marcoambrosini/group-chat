@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Feature component it matches the snapshot 1`] = `
+exports[`Message component it matches the snapshot 1`] = `
 <div
   className="sc-bdVaJa eTqxec"
 >

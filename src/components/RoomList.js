@@ -31,6 +31,7 @@ export default function RoomList(props) {
 
 const RoomListContainer = styled.div`
   box-sizing: border-box;
+  width: 100%;
   padding: 30px;
   background-color: var(--main-color);
   overflow: auto;

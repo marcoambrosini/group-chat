@@ -18,7 +18,7 @@ export default function SignUp(props) {
   return (
     <div className="signup">
       <StyledFormWrapper>
-        <StyledH2>I just need your name</StyledH2>
+        <StyledH2>Your name</StyledH2>
         <form onSubmit={handleSubmit}>
           <StyledFormInput autoFocus onChange={handleChange} value={input} type="text" />
           <StyledFormButton>Go!</StyledFormButton>
